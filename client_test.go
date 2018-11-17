@@ -17,7 +17,7 @@ func TestList(t *testing.T) {
 		t.Fatal("list should not be nil")
 	}
 
-	var license *License
+	var license *LicenseInfo
 	for _, l := range list.Licenses {
 		if l.ID == "MIT" {
 			license = l
@@ -41,7 +41,7 @@ func TestList_exactURL(t *testing.T) {
 		t.Fatal("list should not be nil")
 	}
 
-	var license *License
+	var license *LicenseInfo
 	for _, l := range list.Licenses {
 		if l.ID == "MIT" {
 			license = l
@@ -52,7 +52,7 @@ func TestList_exactURL(t *testing.T) {
 		t.Fatal("MIT license not found")
 	}
 
-	expected := &License{
+	expected := &LicenseInfo{
 		ID:          "MIT",
 		Name:        "MIT License",
 		OSIApproved: true,

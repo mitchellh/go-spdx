@@ -6,15 +6,15 @@ type LicenseList struct {
 	Version string `json:"licenseListVersion"`
 
 	// Licenses is the list of known licenses.
-	Licenses []*License `json:"licenses"`
+	Licenses []*LicenseInfo `json:"licenses"`
 }
 
-// License is a single software license.
+// LicenseInfo is a single software license.
 //
 // Basic descriptions are documented in the fields below. For a full
 // description of the fields, see the official SPDX specification here:
 // https://github.com/spdx/license-list-data/blob/master/accessingLicenses.md
-type License struct {
+type LicenseInfo struct {
 	ID          string   `json:"licenseId"`
 	Name        string   `json:"name"`
 	Text        string   `json:"licenseText"`
@@ -28,7 +28,7 @@ type License struct {
 //
 // Note that licenses in a LicenseList are usually missing fields such as Text.
 // To fully populate a Licenese, call Client.Licence with the ID.
-func (l *LicenseList) License(id string) *License {
+func (l *LicenseList) License(id string) *LicenseInfo {
 	for _, v := range l.Licenses {
 		if v != nil && v.ID == id {
 			return v

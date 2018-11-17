@@ -59,7 +59,7 @@ func (c *Client) List() (*LicenseList, error) {
 // to the SPDX ID, including casing.
 //
 // If err == nil, then *License will always be non-nil.
-func (c *Client) License(id string) (*License, error) {
+func (c *Client) License(id string) (*LicenseInfo, error) {
 	c.once.Do(c.init)
 
 	resp, err := c.HTTP.Get(fmt.Sprintf(c.DetailsURL, id))
@@ -68,7 +68,7 @@ func (c *Client) License(id string) (*License, error) {
 	}
 	defer resp.Body.Close()
 
-	var result License
+	var result LicenseInfo
 	return &result, json.NewDecoder(resp.Body).Decode(&result)
 }
 
