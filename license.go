@@ -22,3 +22,18 @@ type License struct {
 	OSIApproved bool     `json:"isOsiApproved"`
 	SeeAlso     []string `json:"seeAlso"`
 }
+
+// License looks up the license in the list with the given ID. If the license
+// is not found, nil is returned.
+//
+// Note that licenses in a LicenseList are usually missing fields such as Text.
+// To fully populate a Licenese, call Client.Licence with the ID.
+func (l *LicenseList) License(id string) *License {
+	for _, v := range l.Licenses {
+		if v != nil && v.ID == id {
+			return v
+		}
+	}
+
+	return nil
+}
